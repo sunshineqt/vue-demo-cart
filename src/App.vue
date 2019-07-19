@@ -3,7 +3,7 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- 组件的使用HelloWorld -->
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld msg="beautiful world"/>
     <!-- 条件判断 -->
     <p v-if="showName">{{name}}</p>
 
@@ -23,6 +23,12 @@
     <!-- <Cart :name="name" :cart="cart"></Cart>   -->
     <!-- 把添加购物车的实际行为移到购物车组件中，则这里不再需要传cart值 -->
        <Cart :name="name"></Cart> 
+
+       <!-- FormTest测试 两种方式给title传值-->
+       <form-test :title="title"></form-test> 
+       <!-- <form-test title="ell"></form-test>  -->
+       <!-- KButton测试子传父 -->
+       <k-button @eventName="handleClick"></k-button>  
   </div>
 </template>
 
@@ -33,6 +39,8 @@ import { setTimeout } from 'timers';
 import axios from 'axios';
 // 1引入组件
 import Cart from './components/Cart.vue';
+import FormTest from './components/FormTest.vue';
+import KButton from './components/Button.vue';
 export default {
   name: 'app',
   // 组件中的data需为函数
@@ -43,12 +51,15 @@ export default {
       goods:[],
       text:'',
       // cart:[]
+      title:'element form test'
     }
   },
   // 2组件的声明
   components: {
     HelloWorld,
-    Cart
+    Cart,
+    FormTest,
+    KButton
   },
   // 加async说明是异步
  async created() {
@@ -84,6 +95,9 @@ export default {
       this.$bus.$emit('addCart',good);
       // 下面这个也可以
       // this.$root.$emit('addCart',good);
+    },
+    handleClick(obj){
+      console.log(obj,'子传父')
     }
   }
 }
