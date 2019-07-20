@@ -59,11 +59,11 @@ export default {
   data() {
     return {
       name:'beauty',
-      provide(){
-        return {
-          someValue:'来自上上层的礼物'
-        }
-      },
+      // provide(){
+      //   return {
+      //     someValue:'来自上上层的礼物'
+      //   }
+      // },
       showName:false,
       goods:[],
       text:'',

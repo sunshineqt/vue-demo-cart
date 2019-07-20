@@ -10,7 +10,7 @@
             <el-form-item label="密码" prop="pwd">
                 <el-input v-model="ruleForm.pwd"></el-input>
             </el-form-item>
-            
+                 ruleForm:{{ruleForm}}
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
             </el-form-item>
@@ -18,15 +18,21 @@
          </el-form>
 
 
-             <!-- KFormItem-KInput -->
-         <k-form-item label="名称" prop="name">
-            <k-input v-model="ruleForm.name"></k-input>
-         </k-form-item>
-         <k-form-item label="密码" prop="pwd">
-            <k-input v-model="ruleForm.pwd" type="password"></k-input>
-         </k-form-item>
+             <!--KForm- KFormItem-KInput -->
+             <k-form :model="ruleForm" :rules="rules" ref="loginForm2">
+                <k-form-item label="名称" prop="name">
+                    <k-input v-model="ruleForm.name"></k-input>
+                </k-form-item>
+                <k-form-item label="密码" prop="pwd">
+                    <k-input v-model="ruleForm.pwd" type="password"></k-input>
+                </k-form-item>
+                <k-form-item>
+                    <el-button type="primary" @click="submitForm2('ruleForm')">登录</el-button>
+                </k-form-item>
+             </k-form>
+        
        
-        ruleForm:{{ruleForm}}
+        ruleForm2:{{ruleForm}}
        
     </div>
 </template>
@@ -34,6 +40,7 @@
 <script>
 import KInput from './Input.vue';
 import KFormItem from './FormItem.vue';
+import KForm from './Form.vue';
     export default {
         name:'FormTest',
         // props:['title'],
@@ -43,7 +50,8 @@ import KFormItem from './FormItem.vue';
         },
         components:{
             KInput,
-            KFormItem
+            KFormItem,
+            KForm
         },
         data() {
             return {
@@ -70,6 +78,16 @@ import KFormItem from './FormItem.vue';
                         alert('提交登录')
                     } else {
                         alert('校验失败');
+                        return false; //避免浏览器默认提交行为
+                    }
+                })
+            },
+            submitForm2(){
+                this.$refs.loginForm2.validate(valid => {
+                    if(valid) {
+                        alert('提交登录2')
+                    } else {
+                        alert('校验失败2');
                         return false; //避免浏览器默认提交行为
                     }
                 })
