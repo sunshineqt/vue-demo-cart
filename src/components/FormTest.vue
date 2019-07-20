@@ -15,16 +15,22 @@
                 <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
             </el-form-item>
          </el-form>
+         <!-- KInput -->
+         <k-input v-model="someValue"></k-input>
     </div>
 </template>
 
 <script>
+import KInput from './Input.vue';
     export default {
         name:'FormTest',
         // props:['title'],
         // props校验
         props:{
             title:{type:String, required:true}
+        },
+        components:{
+            KInput
         },
         data() {
             return {
@@ -40,7 +46,8 @@
                     pwd:[
                         {required:true,message:'请输入密码'}
                     ]
-                }
+                },
+                someValue:'today is nice'
             }
         },
         methods: {
