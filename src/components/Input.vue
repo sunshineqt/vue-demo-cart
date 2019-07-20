@@ -1,14 +1,23 @@
 <template>
-   <input type="text" :value="inputValue" @input="inputHandler" />
+    <div>
+        {{someValue}}
+        <input :type="type" :value="inputValue" @input="inputHandler" />
+    </div>
 </template>
 
 <script>
     export default {
+        // 上上层的值
+        inject:['someValue'],
         props:{
             value:{
                 type:String,
                 default:''
-            }
+            },
+            type:{
+                type:String,
+                default:'text'
+            },
         },
         data() {
             return {

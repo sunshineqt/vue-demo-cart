@@ -14,14 +14,26 @@
             <el-form-item>
                 <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
             </el-form-item>
+
          </el-form>
-         <!-- KInput -->
-         <k-input v-model="someValue"></k-input>
+
+
+             <!-- KFormItem-KInput -->
+         <k-form-item label="名称" prop="name">
+            <k-input v-model="ruleForm.name"></k-input>
+         </k-form-item>
+         <k-form-item label="密码" prop="pwd">
+            <k-input v-model="ruleForm.pwd" type="password"></k-input>
+         </k-form-item>
+       
+        ruleForm:{{ruleForm}}
+       
     </div>
 </template>
 
 <script>
 import KInput from './Input.vue';
+import KFormItem from './FormItem.vue';
     export default {
         name:'FormTest',
         // props:['title'],
@@ -30,7 +42,8 @@ import KInput from './Input.vue';
             title:{type:String, required:true}
         },
         components:{
-            KInput
+            KInput,
+            KFormItem
         },
         data() {
             return {

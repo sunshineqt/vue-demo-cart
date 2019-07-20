@@ -29,6 +29,17 @@
        <!-- <form-test title="ell"></form-test>  -->
        <!-- KButton测试子传父 -->
        <k-button @eventName="handleClick"></k-button>  
+
+       <!-- slot -->
+       <win>
+         <template slot="head">
+           <h3>我们都是好孩子</h3>
+         </template>
+         content
+        <template slot="foot">
+           <button>确定</button>
+        </template>
+       </win>
   </div>
 </template>
 
@@ -41,12 +52,18 @@ import axios from 'axios';
 import Cart from './components/Cart.vue';
 import FormTest from './components/FormTest.vue';
 import KButton from './components/Button.vue';
+import Win from './components/Win.vue';
 export default {
   name: 'app',
   // 组件中的data需为函数
   data() {
     return {
       name:'beauty',
+      provide(){
+        return {
+          someValue:'来自上上层的礼物'
+        }
+      },
       showName:false,
       goods:[],
       text:'',
@@ -59,7 +76,8 @@ export default {
     HelloWorld,
     Cart,
     FormTest,
-    KButton
+    KButton,
+    Win
   },
   // 加async说明是异步
  async created() {
