@@ -1,6 +1,18 @@
 <template>
 <!-- 每个组件必须有一个根组件 -->
   <div id="app">
+    
+    <!-- 路由导航 元素的添加和删除 -->
+    <router-link to="/dashboard/static">static</router-link> |
+    <router-link to="/dashboard/page1/bar">Page1</router-link> |
+    <!-- /page2/param1 传参，/1/hhh为params参数-->
+    <!-- ?foo=bar为挂载的查询参 -->
+    <router-link to="/dashboard/page2/1/hhh?foo=bar">Page2</router-link> |
+    <router-link to="/login">login</router-link>
+
+    <!-- 路由入口 -->
+    <router-view></router-view>
+
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <!-- 组件的使用HelloWorld -->
     <HelloWorld msg="beautiful world"/>
@@ -59,11 +71,11 @@ export default {
   data() {
     return {
       name:'beauty',
-      // provide(){
-      //   return {
-      //     someValue:'来自上上层的礼物'
-      //   }
-      // },
+      provide(){
+        return {
+          someValue:'来自上上层的礼物'
+        }
+      },
       showName:false,
       goods:[],
       text:'',

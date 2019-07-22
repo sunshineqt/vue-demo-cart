@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- {{someValue}} -->
+        {{someValue}}
         <input :type="type" :value="inputValue" @input="inputHandler" />
     </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
     export default {
         // 上上层的值
-        // inject:['someValue'],
+        inject:['someValue'],
         props:{
             value:{
                 type:String,
@@ -30,7 +30,8 @@
                 this.inputValue = e.target.value
                 // 通知父组件值更新
                 this.$emit('input',this.inputValue)
-
+                // 通知FormItem做校验,this.$parent为FormItem，则在FormItem组件内可进行自我监听
+                this.$parent.$emit('validate', this.inputValue)
             }
         },
     }
