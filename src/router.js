@@ -7,6 +7,7 @@ import Page1 from './views/Page1.vue';
 import Page2 from '@/views/Page2.vue';
 import Dashboard from '@/views/Dashboard.vue';
 import Login from '@/views/Login.vue';
+import store from './store';
 // 插件挂载
 Vue.use(Router)
 /* function func(route) {
@@ -40,7 +41,10 @@ const router = new Router({
         // 路由独享的守卫
         beforeEnter(to,from,next){
             //  如果不是去登陆页面，则判断当前是否登陆
-            if(window.isLogin){
+            // if(window.isLogin){
+              // 改为redux方式取
+              console.log('store.state.isLogin',store.state.isLogin)
+              if(store.state.isLogin){
               // 假设在window上存了个是否登陆的标志
               // 已经登陆
               next();

@@ -3,8 +3,8 @@
         <h3>page11</h3>
         <p><button @click="gotoPage2()">跳转到page2</button></p>
         <!-- 传过来的静态值 -->
-        <p>{{foo}}</p>
-
+        foo:<p>{{foo}}</p>
+        count:{{$store.state.count}}
     </div>
 </template>
 
