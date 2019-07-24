@@ -4,6 +4,8 @@ module.exports = {
     configureWebpack: {
         // 给开发服务器做选项传递
         devServer: {
+            // 修改默认端口号
+            proxy:'localhost:8081',
             // 做个前置中间件，在开发服务器启动之前进行监听，相当于一个服务器，可以mock数据
             before(app) {
                 app.get('/api/goods', function(req,res){
